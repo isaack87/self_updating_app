@@ -1,11 +1,21 @@
 const { app, BrowserWindow } = require('electron');
 const { autoUpdater } = require('electron-updater');
 const path = require('path');
+const { exec } = require('child_process');
 
 let mainWindow;
+let backendProcess;
 
 async function createWindow() {
   const isDev = (await import('electron-is-dev')).default;
+
+  backendProcess = exec('node backend/server.js', (err) => {
+    if (err) {
+      console.error(`Error starting backend: ${err}`);
+      return;
+    }
+  });
+
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
@@ -23,9 +33,7 @@ async function createWindow() {
     mainWindow.loadFile(path.join(__dirname, 'frontend', 'build', 'index.html'));
   }
 
-  mainWindow.on('closed', () => {
-    mainWindow = null;
-  });
+
 
   if (!isDev) {
     autoUpdater.checkForUpdatesAndNotify();
@@ -55,6 +63,9 @@ autoUpdater.on('update-downloaded', () => {
 
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
+    if (backendProcess) {
+      backendProcess.kill();
+    }
     app.quit();
   }
 });
