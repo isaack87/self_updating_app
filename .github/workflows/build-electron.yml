@@ -16,30 +16,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: '14'
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14'
 
-    - name: Install backend dependencies
-      working-directory: ./backend
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Install frontend dependencies
-      working-directory: ./frontend
-      run: npm install
+      - name: Build Electron app
+        run: npm run build-electron
 
-    - name: Build frontend
-      working-directory: ./frontend
-      run: npm run build
-
-    - name: Build Electron app
-      run: npm run build-electron
-
-    - name: Publish GitHub Release
-      uses: softprops/action-gh-release@v1
-      with:
-        files: dist/*
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: dist/*
