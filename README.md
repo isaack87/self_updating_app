@@ -39,12 +39,18 @@ cd self-update-electron-app
 npm run install
 ```
 
-### 3. Run the app in development mode with FE/BE
+### 3. Add .env files for frontend /  backend
+```bash
+cp backend/example.env backend/.env
+cp frontend/example.env frontend/.env
+```
+
+### 4. Run the app in development mode with FRONTEND & BACKEND
 ```bash
 npm run start
 ```
 
-### 4. Build the app for production
+### 5. Build the app for production
 ```bash
 npm run build-electron
 ```
