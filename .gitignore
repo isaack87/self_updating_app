@@ -1,0 +1,51 @@
+# Node.js dependencies
+node_modules/
+
+# Build directories for both frontend and Electron
+frontend/build/
+dist/
+out/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Operating system specific files
+.DS_Store
+Thumbs.db
+
+# Electron generated files
+*.asar
+
+# Compiled files (e.g., DLLs, binaries)
+*.o
+*.out
+*.exe
+
+# Local development environment files
+.env
+.vscode/
+.idea/
+
+# Electron cache
+*.local
+*.userData
+
+# Lockfiles (optional, if not using)
+package-lock.json
+yarn.lock
+
+# Coverage directory
+coverage/
+
+# Electron Builder generated files
+**/dist/*.app
+**/dist/*.exe
+**/dist/*.dmg
+**/dist/*.AppImage
+**/dist/*.tar.gz
+
+# Ignore gitignored files in subdirectories
+frontend/.gitignore
+backend/.gitignore

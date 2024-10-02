@@ -1,0 +1,45 @@
+
+  # Example file of how to set up a GitHub Actions workflow (YAML) to build an Electron app and publish a release to GitHub.
+  # This workflow automates the CI/CD pipeline by checking out the code, installing dependencies, building the app,
+  # and publishing the built Electron app as a release on GitHub.
+
+
+name: Build Electron Self Updating Application
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14'
+
+    - name: Install backend dependencies
+      working-directory: ./backend
+      run: npm install
+
+    - name: Install frontend dependencies
+      working-directory: ./frontend
+      run: npm install
+
+    - name: Build frontend
+      working-directory: ./frontend
+      run: npm run build
+
+    - name: Build Electron app
+      run: npm run build-electron
+
+    - name: Publish GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: dist/*
