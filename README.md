@@ -25,6 +25,12 @@ This project is a cross-platform Electron application that supports **Windows**,
 - **React**: The frontend of the application, built with Create React App.
 - **Electron Builder**: Used to package the app for Windows, Linux, and Mac.
 
+## Future Improvements
+
+- **Testing**: Write some unit, intregration, system, and user acceptance testing.
+- **Linter**: Coding style format.
+- **Webhook Implementation**:  Integrate webhooks to trigger specific actions when an update is made. This could automate processes such as notifying users, logging updates, or initiating deployment processes whenever a new version is published. For this example I have used a set timeout to simulate versions being updated regularly. 
+
 ## Getting Started
 
 ### 1. Clone the repository

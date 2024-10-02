@@ -16,6 +16,10 @@ const VersionUpdater = () => {
   }, [version]);
 
 
+  /*
+      Checks for ipcRenderer and setup event listers that trigger when a new update is available or downloaded
+  */
+
   useEffect(() => {
     const { ipcRenderer } = window.electron || {};
 
