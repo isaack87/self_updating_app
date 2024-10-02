@@ -23,6 +23,7 @@
     "productName": "ElectronReactApp",
     "files": [
       "main.js",
+      "preload.js",
       "frontend/build/**/*"
     ],
     "publish": [
